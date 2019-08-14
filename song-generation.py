@@ -3,6 +3,8 @@ import spotipy
 import requests
 import os
 import pydub
+import base64
+import slugify
 # Create your own config.py containing client ID and secret
 from config import CLIENT_ID, CLIENT_SECRET
 
@@ -18,7 +20,7 @@ genres = {
     "classical",
     "country",
     "disco",
-    "hiphop",
+    "hip-hop",
     "jazz",
     "metal",
     "pop",
@@ -26,10 +28,10 @@ genres = {
     "rock"
 }
 
-dataset_size = 3
+dataset_size = 100
 
 
-# get 100 recommendation song in every genre
+# get recommendation song in every genre in mp3 format
 # Note: won't give 100 recommendations since some songs don't have preview urls. It is advised to run this a few times so that new suggestions get added
 # Note 2: There are many genres in the list by spotify, it would be a better idea to choose a few genres which are popular and varying and work on those rather than risk underfitting the data
 
@@ -46,15 +48,18 @@ for genre in genres:
     except:
         os.mkdir(genre_path)
     while len(os.listdir(genre_path)) < dataset_size:
+        print("getting recommendations")
         rec = sp.recommendations(seed_genres=[genre], limit = dataset_size)
+        song_list = []
         for track in rec['tracks']:
             track_name = track['name']
             track_url = track['preview_url']
-            if track_url  and f'{track_name}.wav' not in os.listdir(genre_path):
-                print('\t', track_name)
+            if track_url and track_name not in song_list:
+                print(f'\tSong Name: {track_name}')
+                song_list.append(track_name)
                 r = requests.get(track_url)
+                print("\tmaking mp3")
+                track_name = slugify.slugify(track_name)
+                print(f'\tFile Name: {track_name}\n')
                 with open(f'{genre_path}/{track_name}.mp3','wb') as f:
                     f.write(r.content)
-                sound = pydub.AudioSegment.from_mp3(f'{genre_path}/{track_name}.mp3')
-                sound.export(f'{genre_path}/{track_name}.wav', format="wav")
-                os.remove(f'{genre_path}/{track_name}.mp3')

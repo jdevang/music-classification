@@ -1,5 +1,8 @@
 venv/
 data/
+img_data/
 config.py
 .vscode/
 __pycache__/
+
+features.csv

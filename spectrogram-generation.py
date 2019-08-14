@@ -12,7 +12,7 @@ genres = {
     "classical",
     "country",
     "disco",
-    "hiphop",
+    "hip-hop",
     "jazz",
     "metal",
     "pop",
