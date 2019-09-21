@@ -1,0 +1,7 @@
+config.py
+features.csv
+img_data/
+data/
+venv/
+.vscode/
+__pycache__/
