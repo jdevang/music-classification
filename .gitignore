@@ -5,3 +5,6 @@ data/
 venv/
 .vscode/
 __pycache__/
+train/
+test/
+valid/
