@@ -1,8 +1,10 @@
 venv/
 data/
 img_data/
+train/
+test/
+valid/
 config.py
 .vscode/
 __pycache__/
-
 features.csv
