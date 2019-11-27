@@ -6,10 +6,6 @@ import matplotlib.pyplot as plt
 
 from fastai import *
 from fastai.vision import *
-import pathlib
-
-p = pathlib.PureWindowsPath('models/')
-p = p.as_posix()
 
 
 cmap = plt.get_cmap('inferno')
