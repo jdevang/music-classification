@@ -1,0 +1,8 @@
+venv/
+valid/
+test/
+train/
+img_data/
+data/
+features.csv
+.vscode/
