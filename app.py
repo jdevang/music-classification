@@ -28,7 +28,7 @@ def index():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             x = predictor(filename)
-            return x
+            return render_template('index.html', prediction = x[0], probability=x[2], output=True)
   return render_template('index.html')
 if __name__ == '__main__':
   app.run(host='127.0.0.1', port=8000, debug=True)

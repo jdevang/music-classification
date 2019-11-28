@@ -12,5 +12,9 @@
     <input type=file name=file>
     <input type=submit value=Upload>
   </form>
+  {% if output %}
+    {{prediction}}
+    {{probability}}
+  {% endif %}
 </body>
 </html>
