@@ -14,7 +14,7 @@ plt.figure(figsize=(10,10))
 
 def predictor(song):
     img = song_to_img(song)
-    model = load_learner(p)
+    model = load_learner('models/')
     return model.predict(img)
 
 
