@@ -1,7 +1,7 @@
 from flask import Flask, render_template, flash, request, redirect, url_for
 from model import predictor
 from werkzeug.utils import secure_filename
-import os
+import os, boto3, json
 
 
 UPLOAD_FOLDER = 'songs/'
@@ -24,10 +24,23 @@ def index():
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
+            S3_BUCKET = os.environ.get('S3_BUCKET_NAME')
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            x = predictor(filename)
-            return x
+            filetype = file.filetype
+            s3 = boto3.client('s3')
+            # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            presigned_post = s3.generate_presigned_post(
+              Bucket = S3_BUCKET,
+              Key = file_name,
+              Fields = {"acl": "public-read", "Content-Type": file_type},
+              Conditions = [
+                {"acl": "public-read"},
+                {"Content-Type": file_type}
+              ],
+              ExpiresIn = 3600
+            )
+            # x = predictor(filename)
+            # return x
   return render_template('index.html')
 if __name__ == '__main__':
   app.run(host='127.0.0.1', port=8000, debug=True)
