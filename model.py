@@ -27,5 +27,5 @@ def song_to_img(song):
     plt.specgram(y, NFFT=2048, Fs=2, Fc=0, noverlap=128, cmap=cmap, sides='default', mode='default', scale='dB')
     plt.axis('off')
     plt.savefig(f'songs/{song[:-4]}.png', transparent=True)
-    plt.clf()
+    return open_image(f'songs/{song[:-4]}.png')
     
