@@ -40,7 +40,7 @@ def index():
                 "rock"
             }
             x = predictor(filename)
-            return render_template('index.html', probability=x[2], classes=classes, filename=file.filename, output=True)
+            return render_template('index.html', prediction=x[0], probability=x[2].tolist(), classes=classes, filename=file.filename, output=True)
   return render_template('index.html')
 
 
