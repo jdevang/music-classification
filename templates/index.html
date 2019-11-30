@@ -36,7 +36,7 @@
         {% for class, item in zip(classes, probability) %}
           <tr>
             <td>{{class}}</th>
-            <td>{{item*100}} %</td>
+            <td>{{trunc(item*100)}} %</td>
           </tr>
         {% endfor %}
         </tbody>  

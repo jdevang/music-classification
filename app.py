@@ -27,7 +27,7 @@ def index():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # x = ("classical", "kek", [3,2,4,1,6,0,7,5,8])
-            classes = {
+            classes = [
                 "blues", 
                 "classical",
                 "country",
@@ -38,7 +38,7 @@ def index():
                 "pop",
                 "reggae",
                 "rock"
-            }
+            ]
             x = predictor(filename)
             return render_template('index.html', x=x, prediction=x[0], probability=x[2].tolist(), classes=classes, filename=file.filename, output=True)
   return render_template('index.html')
@@ -46,6 +46,7 @@ def index():
 
 app.jinja_env.globals.update(sorted=sorted)
 app.jinja_env.globals.update(zip=zip)
+app.jinja_env.globals.update(trunc=math.trunc)
 
 if __name__ == '__main__':
   app.run(host='127.0.0.1', port=8000, debug=True)
