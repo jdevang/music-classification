@@ -4,17 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <title>Document</title>
 </head>
 <body>
-  <h1>Upload new File</h1>
-  <form method=post enctype=multipart/form-data>
-    <input type=file name=file>
-    <input type=submit value=Upload>
-  </form>
-  {% if output %}
-    {{prediction}}
-    {{probability}}
-  {% endif %}
+  <div class="text-center">
+    <h1 class="display-3">Upload a Song</h1>
+    <div class="jumbotron" style="padding: 50px; margin: 50px;">
+        <form method=post enctype=multipart/form-data>
+          <div class="custom-file" style="margin-bottom: 20px;">
+            <input type=file name=file class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose File</label>
+          </div>
+          <input type=submit value=Upload class="btn btn-dark">
+          </form>
+      {% if output %}
+      <div class="display-4">
+        File Name - {{filename[:-4]}}
+      </div>
+      <table class="table table-dark table-striped table-hover" style="">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 200px;">Class</th>
+            <th scope="col" style="width: 200px;">Probability</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for class, item in zip(classes, sorted(probability)) %}
+          <tr>
+            <td>{{class}}</th>
+            <td>{{item}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>  
+      </table>
+      <img src="songs/{{filename[:-4]}}.png" class="rounded float-left" alt="...">
+      {% endif %}
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
