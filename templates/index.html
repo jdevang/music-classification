@@ -22,6 +22,7 @@
       <div class="display-4">
         File Name - {{filename[:-4]}}
       </div>
+      <img src="/songs/{{filename[:-4]}}.png" class="rounded float-left" alt="...">
       <div class="display-4">
         Prediction - {{prediction}}
       </div>
@@ -41,7 +42,6 @@
         {% endfor %}
         </tbody>  
       </table>
-      <img src="songs/{{filename[:-4]}}.png" class="rounded float-left" alt="...">
       {% endif %}
   </div>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
