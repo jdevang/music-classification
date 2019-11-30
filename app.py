@@ -1,8 +1,7 @@
 from flask import Flask, render_template, flash, request, redirect, url_for
-# from model import predictor
+from model import predictor
 from werkzeug.utils import secure_filename
 import os
-# import boto3, json
 
 
 UPLOAD_FOLDER = 'songs/'
@@ -27,7 +26,7 @@ def index():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            x = ("classical", "kek", [3,2,4,1,6,0,7,5,8])
+            # x = ("classical", "kek", [3,2,4,1,6,0,7,5,8])
             classes = {
                 "blues", 
                 "classical",
@@ -40,7 +39,7 @@ def index():
                 "reggae",
                 "rock"
             }
-            # x = predictor(filename)
+            x = predictor(filename)
             return render_template('index.html', probability=x[2], classes=classes, filename=file.filename, output=True)
   return render_template('index.html')
 
