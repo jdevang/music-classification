@@ -27,6 +27,6 @@ def song_to_img(song):
     y, sr = librosa.load(f'songs/{song}', mono=True, duration=30, offset=offset)
     plt.specgram(y, NFFT=2048, Fs=2, Fc=0, noverlap=128, cmap=cmap, sides='default', mode='default', scale='dB')
     plt.axis('off')
-    plt.savefig(f'songs/{song[:-4]}.png', transparent=True)
-    return open_image(f'songs/{song[:-4]}.png')
+    plt.savefig(f'static/images/{song[:-4]}.png', transparent=True)
+    return open_image(f'static/images/{song[:-4]}.png')
     
