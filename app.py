@@ -1,7 +1,7 @@
 from flask import Flask, render_template, flash, request, redirect, url_for
 from model import predictor
 from werkzeug.utils import secure_filename
-import os
+import os, math
 
 
 UPLOAD_FOLDER = 'songs/'
@@ -40,7 +40,7 @@ def index():
                 "rock"
             }
             x = predictor(filename)
-            return render_template('index.html', prediction=x[0], probability=x[2].tolist(), classes=classes, filename=file.filename, output=True)
+            return render_template('index.html', x=x, prediction=x[0], probability=x[2].tolist(), classes=classes, filename=file.filename, output=True)
   return render_template('index.html')
 
 
