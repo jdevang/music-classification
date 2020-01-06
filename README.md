@@ -1,3 +1,3 @@
 # Music Classification
 
-for now this is a dummy README
+Refer to each branch for code of each part
