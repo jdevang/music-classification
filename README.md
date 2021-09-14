@@ -1,3 +1,5 @@
 # Music Classification
+## cnn-code
 
-for now this is a dummy README
+This branch contains the code for the CNN Model. The model uses a spectrogram of the music file to infer the genre of music.
+Currently the model can infer amongst 10 different genres.
