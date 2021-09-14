@@ -6,4 +6,4 @@ img_data/
 data/
 features.csv
 .vscode/
-__pycache__/
+*__pycache__*
